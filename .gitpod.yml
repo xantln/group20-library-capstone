@@ -3,8 +3,11 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
-  - before: cp dc_config/secrets_template.env dc_config/secrets.env
-    init: make init && make build
+  - name: Setup cyberCommons
+    init: |
+      cp dc_config/secrets_template.env dc_config/secrets.env
+      make init
+      make build
     command: make run
 
 # Ports to expose on workspace startup
@@ -12,3 +15,9 @@ ports:
   - port: 80
     onOpen: open-preview
     visibility: private
+  - port: 443
+    onopen: ignore
+  - port: 5671
+    onOpen: ignore
+  - port: 27017
+    onOpen: ignore
