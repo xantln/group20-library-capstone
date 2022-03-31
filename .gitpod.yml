@@ -16,7 +16,7 @@ ports:
     onOpen: open-preview
     visibility: private
   - port: 443
-    onopen: ignore
+    onOpen: ignore
   - port: 5671
     onOpen: ignore
   - port: 27017
