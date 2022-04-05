@@ -1,10 +1,20 @@
-
+mainConfiguration: https://github.com/Rithsek99/cybercommons.git
+# submodule
+additionalRepositories: 
+  - url: https://github.com/oulib-datacatalog/celery-remote-worker/tree/test
+    checkoutLocation: islandora-remote
+ 
 tasks:
   - name: Setup cyberCommons
     init: |
       cp dc_config/secrets_template.env dc_config/secrets.env
       make init
       make build
+    command: make run
+    
+  - name: Setup Islandora remote worker
+    before: cd ../islandora-remote
+    init: make init
     command: make run
 
 # Ports to expose on workspace startup
