@@ -4,8 +4,8 @@ additionalRepositories:
  
 tasks:
   - name: Setup cyberCommons
+    before: cp dc_config/secrets_template.env dc_config/secrets.env
     init: |
-      cp dc_config/secrets_template.env dc_config/secrets.env
       make init
       make build
     command: make run
