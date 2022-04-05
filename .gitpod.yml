@@ -1,5 +1,3 @@
-mainConfiguration: https://github.com/Rithsek99/cybercommons.git
-# submodule
 additionalRepositories: 
   - url: https://github.com/oulib-datacatalog/celery-remote-worker/tree/test
     checkoutLocation: islandora-remote
