@@ -52,4 +52,23 @@ class CCAPITest(APITestCase):
         request = self.factory.get('/user')
         response = self.userprofile_view(request)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+       
 
+    def test_add(self):
+        
+        import json
+
+        headers ={'Content-Type':'application/json',"Authorization":"Token < authorized token >"}
+        data = {"function":"cybercomq.tasks.tasks.add","queue":"celery","args":[2,2],"kwargs":{},"tags":["add"]}
+        req = self.factory.post('http://testserver/api/queue/run/cybercomq.tasks.tasks.add/.json', data=data, headers = headers, format='json')
+
+        request = self.factory.get("/api/queue/usertasks")
+        force_authenticate(request, user=self.user)
+        response = self.apiroot_view(request)
+        # Confirm the username exists and matches our test user
+        # self.assertEqual(response.data.get('username'), self.user.username)
+        print("Data: ", response.data)
+       # headers ={'Content-Type':'application/json',"Authorization":"Token < authorized token >"}
+      #  data = {"function":"cybercomq.tasks.tasks.add","queue":"celery","args":[2,2],"kwargs":{},"tags":["add"]}
+      #  req=self.factory.post("http://testserver/api/queue/run/cybercomq.tasks.tasks.add/.json",data=json.dumps(data),headers=headers) 
+       # self.assertEqual(req.text, 4)
